@@ -17,7 +17,7 @@
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>bi_faesa</database>
+    <database>bi_faesa_cellid</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ce108cc2ff8b</password>
@@ -339,24 +339,20 @@
   <shared_objects_file/>
   <entries>
     <entry>
-      <name>SQL</name>
+      <name>add_constraints</name>
       <description/>
       <type>SQL</type>
       <attributes/>
-      <sql>
-alter table datawarehouse.dim_familia drop constraint if exists id_fato_estudante_fk;
-alter table datawarehouse.dim_familia
-add constraint id_fato_estudante_fk
-foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato_estudante);	</sql>
+      <sql/>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>T</sqlfromfile>
-      <sqlfilename>${Internal.Entry.Current.Directory}/pdi_files/constraints_dimensoes.sql</sqlfilename>
+      <sqlfilename>${Internal.Entry.Current.Directory}/pdi_files/constraints_dimensoes.SQL</sqlfilename>
       <sendOneStatement>F</sendOneStatement>
       <connection>postgres_bi_faesa</connection>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>512</xloc>
+      <xloc>528</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
@@ -365,13 +361,13 @@ foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato
       <description/>
       <type>WRITE_TO_LOG</type>
       <attributes/>
-      <logmessage>SQL CONSTRAINT FK DIMENSOES EXECUTADO</logmessage>
+      <logmessage>SQL ADD CONSTRAINT EXECUTADO COM SUCESSO</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
+      <xloc>672</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
@@ -393,8 +389,8 @@ foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>176</xloc>
-      <yloc>64</yloc>
+      <xloc>224</xloc>
+      <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
     <entry>
@@ -405,7 +401,7 @@ foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>688</xloc>
+      <xloc>672</xloc>
       <yloc>160</yloc>
       <attributes_kjc/>
     </entry>
@@ -444,14 +440,47 @@ foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>320</xloc>
+      <xloc>448</xloc>
+      <yloc>160</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>drop_create_tables</name>
+      <description/>
+      <type>SQL</type>
+      <attributes/>
+      <sql/>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>T</sqlfromfile>
+      <sqlfilename>${Internal.Entry.Current.Directory}/pdi_files/drop_and_create_tables.SQL</sqlfilename>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>postgres_bi_faesa</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>224</xloc>
+      <yloc>64</yloc>
+      <attributes_kjc/>
+    </entry>
+    <entry>
+      <name>loq_sql_01</name>
+      <description/>
+      <type>WRITE_TO_LOG</type>
+      <attributes/>
+      <logmessage>SQL DROP CREATE TABLES EXECUTADO COM SUCESSO</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>368</xloc>
       <yloc>64</yloc>
       <attributes_kjc/>
     </entry>
   </entries>
   <hops>
     <hop>
-      <from>SQL</from>
+      <from>add_constraints</from>
       <to>Write to log</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -470,7 +499,7 @@ foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato
     </hop>
     <hop>
       <from>Transformation</from>
-      <to>SQL</to>
+      <to>add_constraints</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -479,12 +508,30 @@ foreign key (id_fato_estudante) references datawarehouse.fato_estudante (id_fato
     </hop>
     <hop>
       <from>Start</from>
-      <to>Transformation</to>
+      <to>drop_create_tables</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>drop_create_tables</from>
+      <to>loq_sql_01</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>loq_sql_01</from>
+      <to>Transformation</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>

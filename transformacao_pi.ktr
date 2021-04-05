@@ -1508,20 +1508,20 @@
         <stream_name>id_fato_estudante</stream_name>
       </field>
       <field>
-        <column_name>absences_x</column_name>
-        <stream_name>absences_x</stream_name>
+        <column_name>absences</column_name>
+        <stream_name>absences</stream_name>
       </field>
       <field>
-        <column_name>G1_x</column_name>
-        <stream_name>G1_x</stream_name>
+        <column_name>G1</column_name>
+        <stream_name>G1</stream_name>
       </field>
       <field>
-        <column_name>G2_x</column_name>
-        <stream_name>G2_x</stream_name>
+        <column_name>G2</column_name>
+        <stream_name>G2</stream_name>
       </field>
       <field>
-        <column_name>G3_x</column_name>
-        <stream_name>G3_x</stream_name>
+        <column_name>G3</column_name>
+        <stream_name>G3</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1555,7 +1555,7 @@
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
+    <use_batch>N</use_batch>
     <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
@@ -1572,20 +1572,20 @@
         <stream_name>id_fato_estudante</stream_name>
       </field>
       <field>
-        <column_name>absences_y</column_name>
-        <stream_name>absences_y</stream_name>
+        <column_name>absences</column_name>
+        <stream_name>absences</stream_name>
       </field>
       <field>
-        <column_name>G1_y</column_name>
-        <stream_name>G1_y</stream_name>
+        <column_name>G1</column_name>
+        <stream_name>G1</stream_name>
       </field>
       <field>
-        <column_name>G2_y</column_name>
-        <stream_name>G2_y</stream_name>
+        <column_name>G2</column_name>
+        <stream_name>G2</stream_name>
       </field>
       <field>
-        <column_name>G3_y</column_name>
-        <stream_name>G3_y</stream_name>
+        <column_name>G3</column_name>
+        <stream_name>G3</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1998,18 +1998,23 @@
     <fields>
       <field>
         <name>id_fato_estudante</name>
+        <rename/>
       </field>
       <field>
         <name>absences_x</name>
+        <rename>absences</rename>
       </field>
       <field>
         <name>G1_x</name>
+        <rename>G1</rename>
       </field>
       <field>
         <name>G2_x</name>
+        <rename>G2</rename>
       </field>
       <field>
         <name>G3_x</name>
+        <rename>G3</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2041,18 +2046,23 @@
     <fields>
       <field>
         <name>id_fato_estudante</name>
+        <rename/>
       </field>
       <field>
         <name>absences_y</name>
+        <rename>absences</rename>
       </field>
       <field>
         <name>G1_y</name>
+        <rename>G1</rename>
       </field>
       <field>
         <name>G2_y</name>
+        <rename>G2</rename>
       </field>
       <field>
         <name>G3_y</name>
+        <rename>G3</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>

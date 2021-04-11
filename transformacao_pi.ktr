@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>transformacao_pi</name>
+    <name>transformacao_principal</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,9 +428,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2021/04/03 09:41:47.108</created_date>
+    <created_date>2021/04/05 20:55:24.006</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2021/04/03 09:41:47.108</modified_date>
+    <modified_date>2021/04/05 20:55:24.006</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -441,7 +441,7 @@
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>bi_faesa</database>
+    <database>bi_faesa_cellid</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ce108cc2ff8b</password>
@@ -494,18 +494,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>select_dim_familia</from>
-      <to>insert_dim_familia</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>select_dim_escola</from>
-      <to>insert_dim_escola</to>
+      <from>pk_endereco</from>
+      <to>insert_dim_endereco</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>pk_fato_estudante</from>
-      <to>select_tabela_fato</to>
+      <to>select_dim_endereco</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_fato_estudante</from>
+      <to>select_dim_escola</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -515,37 +515,17 @@
     </hop>
     <hop>
       <from>pk_fato_estudante</from>
-      <to>select_dim_escola</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>select_tabela_fato</from>
-      <to>insert_tabela_fato</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>select_dim_mat</from>
-      <to>insert_dim_mat</to>
+      <to>select_dim_faixaetaria</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>pk_fato_estudante</from>
-      <to>select_dim_mat</to>
+      <to>select_tabela_fato</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>select_dim_port</from>
-      <to>insert_dim_port</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>pk_fato_estudante</from>
-      <to>select_dim_port</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>pk_fato_estudante</from>
-      <to>select_dim_endereco</to>
+      <from>pk_faixaetaria</from>
+      <to>insert_dim_faixaetaria</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -554,23 +534,148 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>pk_endereco</from>
-      <to>insert_dim_endereco</to>
+      <from>select_dim_faixaetaria</from>
+      <to>pk_faixaetaria</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>select_dim_idade</from>
-      <to>pk_idade</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>pk_idade</from>
-      <to>insert_dim_idade</to>
+      <from>select_tabela_fato</from>
+      <to>insert_tabela_fato</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>pk_fato_estudante</from>
-      <to>select_dim_idade</to>
+      <to>select_dim_mat_g1</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_fato_estudante</from>
+      <to>select_dim_mat_g2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_fato_estudante</from>
+      <to>select_dim_mat_g1 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_disciplina_mat</from>
+      <to>pk_nota</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_fato_estudante</from>
+      <to>select_dim_mat_g1 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_fato_estudante</from>
+      <to>select_dim_mat_g2 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_fato_estudante</from>
+      <to>select_dim_mat_g1 3 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_disciplina_port</from>
+      <to>pk_nota</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_nota</from>
+      <to>pk_tempo</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_tempo</from>
+      <to>insert_dim_nota</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_tempo</from>
+      <to>insert_dim_tempo</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_mat_g1 2</from>
+      <to>add_trimestre_01_p</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_trimestre_01_p</from>
+      <to>add_disciplina_port</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_mat_g1 3 2</from>
+      <to>add_trimestre_03_p</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_trimestre_03_p</from>
+      <to>add_disciplina_port</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_mat_g2 2</from>
+      <to>add_trimestre_02_p</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_trimestre_02_p</from>
+      <to>add_disciplina_port</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_mat_g1</from>
+      <to>add_trimestre_01_m</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_trimestre_01_m</from>
+      <to>add_disciplina_mat</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_mat_g1 3</from>
+      <to>add_trimestre_03_m</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_trimestre_03_m</from>
+      <to>add_disciplina_mat</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_mat_g2</from>
+      <to>add_trimestre_02_m</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>add_trimestre_02_m</from>
+      <to>add_disciplina_mat</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_escola</from>
+      <to>pk_escola</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_escola</from>
+      <to>insert_dim_escola</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>select_dim_familia</from>
+      <to>pk_familia</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>pk_familia</from>
+      <to>insert_dim_familia</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -1193,8 +1298,320 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
+      <xloc>48</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_disciplina_mat</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>disciplina</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>M</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
       <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_disciplina_port</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>disciplina</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>P</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_trimestre_01_m</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>trimestre</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>144</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_trimestre_01_p</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>trimestre</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_trimestre_02_m</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>trimestre</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_trimestre_02_p</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>trimestre</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>480</xloc>
+      <yloc>448</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_trimestre_03_m</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>trimestre</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>add_trimestre_03_p</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>trimestre</name>
+        <type>Number</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>496</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1228,16 +1645,16 @@
     <return_field/>
     <fields>
       <field>
+        <column_name>id_endereco</column_name>
+        <stream_name>id_endereco</stream_name>
+      </field>
+      <field>
         <column_name>id_fato_estudante</column_name>
         <stream_name>id_fato_estudante</stream_name>
       </field>
       <field>
         <column_name>address</column_name>
         <stream_name>address</stream_name>
-      </field>
-      <field>
-        <column_name>id_endereco</column_name>
-        <stream_name>id_endereco</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1249,8 +1666,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>224</yloc>
+      <xloc>416</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1283,6 +1700,10 @@
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
+      <field>
+        <column_name>id_escola</column_name>
+        <stream_name>id_escola</stream_name>
+      </field>
       <field>
         <column_name>id_fato_estudante</column_name>
         <stream_name>id_fato_estudante</stream_name>
@@ -1329,8 +1750,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>160</yloc>
+      <xloc>304</xloc>
+      <yloc>0</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1363,6 +1784,10 @@
     <return_keys>N</return_keys>
     <return_field/>
     <fields>
+      <field>
+        <column_name>id_familia</column_name>
+        <stream_name>id_familia</stream_name>
+      </field>
       <field>
         <column_name>id_fato_estudante</column_name>
         <stream_name>id_fato_estudante</stream_name>
@@ -1413,13 +1838,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>96</yloc>
+      <xloc>160</xloc>
+      <yloc>0</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>insert_dim_idade</name>
+    <name>insert_dim_faixaetaria</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1431,7 +1856,7 @@
     </partitioning>
     <connection>postgres_bi_faesa</connection>
     <schema>datawarehouse</schema>
-    <table>dim_idade</table>
+    <table>dim_faixaetaria</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -1448,8 +1873,8 @@
     <return_field/>
     <fields>
       <field>
-        <column_name>id_idade</column_name>
-        <stream_name>id_idade</stream_name>
+        <column_name>id_faixaetaria</column_name>
+        <stream_name>id_faixaetaria</stream_name>
       </field>
       <field>
         <column_name>id_fato_estudante</column_name>
@@ -1469,13 +1894,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>288</yloc>
+      <xloc>464</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>insert_dim_mat</name>
+    <name>insert_dim_nota</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1487,7 +1912,7 @@
     </partitioning>
     <connection>postgres_bi_faesa</connection>
     <schema>datawarehouse</schema>
-    <table>dim_mat</table>
+    <table>dim_nota</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -1504,24 +1929,28 @@
     <return_field/>
     <fields>
       <field>
+        <column_name>id_nota</column_name>
+        <stream_name>id_nota</stream_name>
+      </field>
+      <field>
         <column_name>id_fato_estudante</column_name>
         <stream_name>id_fato_estudante</stream_name>
+      </field>
+      <field>
+        <column_name>id_tempo</column_name>
+        <stream_name>id_tempo</stream_name>
       </field>
       <field>
         <column_name>absences</column_name>
         <stream_name>absences</stream_name>
       </field>
       <field>
-        <column_name>G1</column_name>
-        <stream_name>G1</stream_name>
+        <column_name>nota</column_name>
+        <stream_name>nota</stream_name>
       </field>
       <field>
-        <column_name>G2</column_name>
-        <stream_name>G2</stream_name>
-      </field>
-      <field>
-        <column_name>G3</column_name>
-        <stream_name>G3</stream_name>
+        <column_name>disciplina</column_name>
+        <stream_name>disciplina</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1533,13 +1962,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>352</yloc>
+      <xloc>800</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>insert_dim_port</name>
+    <name>insert_dim_tempo</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1551,11 +1980,11 @@
     </partitioning>
     <connection>postgres_bi_faesa</connection>
     <schema>datawarehouse</schema>
-    <table>dim_port</table>
+    <table>dim_tempo</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>N</use_batch>
+    <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
@@ -1568,24 +1997,12 @@
     <return_field/>
     <fields>
       <field>
-        <column_name>id_fato_estudante</column_name>
-        <stream_name>id_fato_estudante</stream_name>
+        <column_name>id_tempo</column_name>
+        <stream_name>id_tempo</stream_name>
       </field>
       <field>
-        <column_name>absences</column_name>
-        <stream_name>absences</stream_name>
-      </field>
-      <field>
-        <column_name>G1</column_name>
-        <stream_name>G1</stream_name>
-      </field>
-      <field>
-        <column_name>G2</column_name>
-        <stream_name>G2</stream_name>
-      </field>
-      <field>
-        <column_name>G3</column_name>
-        <stream_name>G3</stream_name>
+        <column_name>trimestre</column_name>
+        <stream_name>trimestre</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1597,8 +2014,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>416</yloc>
+      <xloc>736</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1693,8 +2110,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>32</yloc>
+      <xloc>32</xloc>
+      <yloc>16</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1728,8 +2145,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>224</yloc>
+      <xloc>288</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1763,13 +2180,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>224</yloc>
+      <xloc>160</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>pk_idade</name>
+    <name>pk_faixaetaria</name>
     <type>Sequence</type>
     <description/>
     <distribute>Y</distribute>
@@ -1779,7 +2196,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <valuename>id_idade</valuename>
+    <valuename>id_faixaetaria</valuename>
     <use_database>N</use_database>
     <connection>postgres_bi_faesa</connection>
     <schema/>
@@ -1798,8 +2215,78 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>448</xloc>
-      <yloc>288</yloc>
+      <xloc>368</xloc>
+      <yloc>80</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>pk_nota</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>id_nota</valuename>
+    <use_database>N</use_database>
+    <connection>postgres_bi_faesa</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>592</xloc>
+      <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>pk_tempo</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>id_tempo</valuename>
+    <use_database>N</use_database>
+    <connection>postgres_bi_faesa</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>336</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1832,8 +2319,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>224</yloc>
+      <xloc>224</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1887,8 +2374,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>336</xloc>
-      <yloc>160</yloc>
+      <xloc>176</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1945,47 +2432,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>96</yloc>
+      <xloc>112</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>select_dim_idade</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>id_fato_estudante</name>
-      </field>
-      <field>
-        <name>age</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>336</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>select_dim_mat</name>
+    <name>select_dim_faixaetaria</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1999,6 +2452,41 @@
       <field>
         <name>id_fato_estudante</name>
         <rename/>
+      </field>
+      <field>
+        <name>age</name>
+        <rename/>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>304</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>select_dim_mat_g1</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_fato_estudante</name>
       </field>
       <field>
         <name>absences_x</name>
@@ -2006,15 +2494,7 @@
       </field>
       <field>
         <name>G1_x</name>
-        <rename>G1</rename>
-      </field>
-      <field>
-        <name>G2_x</name>
-        <rename>G2</rename>
-      </field>
-      <field>
-        <name>G3_x</name>
-        <rename>G3</rename>
+        <rename>nota</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2027,13 +2507,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>352</yloc>
+      <xloc>368</xloc>
+      <yloc>144</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>select_dim_port</name>
+    <name>select_dim_mat_g1 2</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -2046,7 +2526,6 @@
     <fields>
       <field>
         <name>id_fato_estudante</name>
-        <rename/>
       </field>
       <field>
         <name>absences_y</name>
@@ -2054,15 +2533,7 @@
       </field>
       <field>
         <name>G1_y</name>
-        <rename>G1</rename>
-      </field>
-      <field>
-        <name>G2_y</name>
-        <rename>G2</rename>
-      </field>
-      <field>
-        <name>G3_y</name>
-        <rename>G3</rename>
+        <rename>nota</rename>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -2075,8 +2546,164 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>416</yloc>
+      <xloc>368</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>select_dim_mat_g1 3</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_fato_estudante</name>
+      </field>
+      <field>
+        <name>absences_x</name>
+        <rename>absences</rename>
+      </field>
+      <field>
+        <name>G3_x</name>
+        <rename>nota</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>select_dim_mat_g1 3 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_fato_estudante</name>
+      </field>
+      <field>
+        <name>absences_y</name>
+        <rename>absences</rename>
+      </field>
+      <field>
+        <name>G3_y</name>
+        <rename>nota</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>select_dim_mat_g2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_fato_estudante</name>
+      </field>
+      <field>
+        <name>absences_x</name>
+        <rename>absences</rename>
+      </field>
+      <field>
+        <name>G2_x</name>
+        <rename>nota</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>select_dim_mat_g2 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>id_fato_estudante</name>
+      </field>
+      <field>
+        <name>absences_y</name>
+        <rename>absences</rename>
+      </field>
+      <field>
+        <name>G2_y</name>
+        <rename>nota</rename>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2363,8 +2990,78 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>32</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>pk_escola</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>id_escola</valuename>
+    <use_database>N</use_database>
+    <connection>postgres_bi_faesa</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>224</xloc>
       <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>pk_familia</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>id_familia</valuename>
+    <use_database>N</use_database>
+    <connection>postgres_bi_faesa</connection>
+    <schema/>
+    <seqname>SEQ_</seqname>
+    <use_counter>Y</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>112</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

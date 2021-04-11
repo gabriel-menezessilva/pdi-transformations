@@ -1,4 +1,4 @@
-# Started pack do Projeto
+# Configuração de Ambiente do Projeto
 
 <p> Para que o projeto no pentaho seja executado corretamente, é necessário editar a conexão
 com o banco de dados, configurando para a conexão com o banco de sua preferência.
